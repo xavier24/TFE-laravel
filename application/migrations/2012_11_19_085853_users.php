@@ -10,7 +10,7 @@ class Users {
 	public function up()
 	{
             Schema::create('users',function($table){
-               $table->increments('user_id');
+               $table->increments('id');
                $table->string('username',20);
                $table->string('email');
                $table->string('password');

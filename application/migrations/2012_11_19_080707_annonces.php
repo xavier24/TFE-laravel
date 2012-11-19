@@ -15,14 +15,14 @@ class Annonces {
                $table->string('arrivee',100);
                $table->date('date');
                $table->timestamp('heure');
-               $table->decimal('flexibilite',2,0);
+               $table->integer('flexibilite',2);
                $table->boolean('conducteur');
                $table->boolean('fumeur');
                $table->boolean('bagage');
                $table->boolean('animaux');
                $table->boolean('discussion');
                $table->boolean('musique');
-               $table->decimal('places',2,0);
+               $table->integer('places',1);
                $table->integer('user_id');
                $table->timestamps();
             });
