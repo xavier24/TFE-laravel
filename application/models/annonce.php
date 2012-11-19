@@ -2,8 +2,8 @@
 
 class Annonce extends Eloquent{
     
-        public function annonces(){
-            return $this->belongs_to('user');
+        public function user(){
+            return $this->belongs_to('User');
 
         }
 }

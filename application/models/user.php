@@ -3,7 +3,7 @@
 class User extends Eloquent{
     
         public function annonces(){
-            return $this->has_many('annonce');
+            return $this->has_many('Annonce');
 
         }
 }

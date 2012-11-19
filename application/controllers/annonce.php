@@ -4,11 +4,9 @@ class Annonce_Controller extends Base_Controller {
 
 	public function action_index()
 	{
-            $titre = "Un super titre";
-            $second_titre = "Second titre";
+            $annonces = Annonce::all();
             return View::make('annonce.index')
-                    ->with('titre',$titre)
-                    ->with('second_titre',$second_titre);
-	}
+                    ->with('annonces',$annonces);
+        }
 
 }
