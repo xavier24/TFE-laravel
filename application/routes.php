@@ -31,10 +31,11 @@
 |		});
 |
 */
+Route::controller(Controller::detect());
 
 Route::get('/', function()
 {
-	return View::make('home.index');
+	return Redirect::to('annonce');
 });
 
 /*
