@@ -27,18 +27,32 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          {{ HTML::link('/', 'Car-people',array('class'=>'brand')) }}
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="#">Rechercher une annonce</a></li>
+              <li>{{ HTML::link('annonce/add','Publier une annonce') }}</li>
+              @if(Auth::guest() )
+                <li>{{ HTML::link('user/signUp','Inscription') }}</li>
+              @else
+                <li>{{ HTML::link('user/'.Auth::User()->id,'Mon compte') }}</li>
+              @endif
+              <li><a href="#contact">Aide - FAQ</a></li>
+              <li>{{ HTML::link('contact/','Contact') }}</li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
+    <div>
+        @if(Auth::guest() )
+        <p>{{ HTML::link('user/login','Connexion') }}</p>
+        <p>{{ HTML::link('user/signUp','Inscription') }}</p>
+        @else
+        <p>{{ HTML::link('user/'.Auth::User()->id,'Mon compte') }}</p>
+        <p>{{ HTML::link('user/logOut','Déconnexion') }}</p>
+        @endif
+    </div>
     <div class="container">
         @yield('content')
     </div> <!-- /container -->
