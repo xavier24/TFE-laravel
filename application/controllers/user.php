@@ -12,9 +12,29 @@ class User_Controller extends Base_Controller {
         public function action_index(){
             'Bienvenue '.Auth::user()->username;
         }
+        
         public function action_login(){
-            
+           if( Auth::check() ){
+               return Redirect::to('user');
+           }
+           if(Request::method()=='POST'){
+               $userdata = array(
+                   'username'=>Input::get('username'),
+                   'password'=>Input::get('password')
+               );
+               if(Auth::attempt($userdata)){
+                   return Redirect::to('user');
+               }
+               else{
+                   return Redirect::to('user/login')
+                           ->with_input()
+                           ->with('login_errors',true);
+               }
+           }
+           Section::inject('title','Connexion');
+           return View::make('user.login');
         }
+        
         public function action_signup(){
            if( Auth::check() ){
                return Redirect::to('user');
