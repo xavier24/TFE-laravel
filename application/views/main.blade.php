@@ -49,7 +49,7 @@
         <p>{{ HTML::link('user/login','Connexion') }}</p>
         <p>{{ HTML::link('user/signup','Inscription') }}</p>
         @else
-        <p>{{ HTML::link('user/'.Auth::User()->id,'Mon compte') }}</p>
+        <p>{{ HTML::link('annonce/user/'.Auth::User()->username.'/'.Auth::User()->id,'Mon compte') }}</p>
         <p>{{ HTML::link('user/logout','Déconnexion') }}</p>
         @endif
     </div>

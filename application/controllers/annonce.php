@@ -27,7 +27,33 @@ class Annonce_Controller extends Base_Controller {
                     ->with('user',$user);
         }
         public function action_add(){
-            
+            if(Request::method()=='POST'){
+                $rules = array(
+                    'depart'=>'required|max:50|min:5',
+                    'arrivee'=>'required|max:50|min:5'
+                );
+                $validation = Validator::make(Input::all(),$rules);
+                
+                if($validation->fails() ){
+                    return Redirect::to('annonce/add')
+                            ->with_errors($validation)
+                            ->with_input();
+                }
+                else{
+                    $post = new Annonce(array(
+                        'depart'=>Input::get('depart'),
+                        'arrivee'=>Input::get('arrivee'),
+                        'description'=>Input::get('description'),
+                        'user_id'=>Auth::User()->id
+                    ));
+                    if($post->save() ){
+                        Session::flash('success','Article ajouté');
+                        return Redirect::back();
+                    }
+                }
+            }
+            Section::inject('title','Car-People - Ajouter une annonce');
+            return View::make('annonce.add');
         }
 
 }
