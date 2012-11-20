@@ -10,7 +10,7 @@ class User_Controller extends Base_Controller {
         
         
         public function action_index(){
-            'Bienvenue '.Auth::user()->username;
+            echo 'Bienvenue '.Auth::user()->username;
         }
         
         public function action_login(){
@@ -69,7 +69,8 @@ class User_Controller extends Base_Controller {
            return View::make('user.signup');
         }
         public function action_logout(){
-           
+           Auth::logout();
+           return Redirect::home();
         }
 
 }
