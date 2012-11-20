@@ -32,6 +32,17 @@ class User_Controller extends Base_Controller {
                            ->with_errors($validation)
                            ->with_input();
                }
+               else{
+                   $data = array(
+                       'username'=>Input::get('username'),
+                       'email'=>Input::get('email'),
+                       'password'=>Hash::make( Input::get('password') )
+                   );
+                   if(User::create($data)){
+                       Session::flash('success','Inscription terminée');
+                   }
+               }
+               return Redirect::to('user/signup');
            }
            
            Section::inject('title','Inscription');
