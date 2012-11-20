@@ -33,7 +33,7 @@
               <li class="active"><a href="#">Rechercher une annonce</a></li>
               <li>{{ HTML::link('annonce/add','Publier une annonce') }}</li>
               @if(Auth::guest() )
-                <li>{{ HTML::link('user/signUp','Inscription') }}</li>
+                <li>{{ HTML::link('user/signup','Inscription') }}</li>
               @else
                 <li>{{ HTML::link('user/'.Auth::User()->id,'Mon compte') }}</li>
               @endif
@@ -47,10 +47,10 @@
     <div>
         @if(Auth::guest() )
         <p>{{ HTML::link('user/login','Connexion') }}</p>
-        <p>{{ HTML::link('user/signUp','Inscription') }}</p>
+        <p>{{ HTML::link('user/signup','Inscription') }}</p>
         @else
         <p>{{ HTML::link('user/'.Auth::User()->id,'Mon compte') }}</p>
-        <p>{{ HTML::link('user/logOut','Déconnexion') }}</p>
+        <p>{{ HTML::link('user/logout','Déconnexion') }}</p>
         @endif
     </div>
     <div class="container">

@@ -2,7 +2,13 @@
 
 class Annonce_Controller extends Base_Controller {
 
-	public function action_index(){
+	function __construct(){
+            parent::__construct();
+            $this->filter('before', 'auth')->only(array('add'));
+            $this->filter('before', 'csrf')->on('post');
+        }
+    
+        public function action_index(){
             $annonces = Annonce::all();
             Section::inject('title','Car-People');
             return View::make('annonce.index')
@@ -19,6 +25,9 @@ class Annonce_Controller extends Base_Controller {
            Section::inject('title','Car-People - Profil de '.$user->username);
            return View::make('annonce.user')
                     ->with('user',$user);
+        }
+        public function action_add(){
+            
         }
 
 }
