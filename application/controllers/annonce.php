@@ -14,5 +14,11 @@ class Annonce_Controller extends Base_Controller {
            return View::make('annonce.lire')
                     ->with('annonce',$annonce);
         }
+        public function action_user($slug,$id){
+           $user = User::find($id);
+           Section::inject('title','Car-People - Profil de '.$user->username);
+           return View::make('annonce.user')
+                    ->with('user',$user);
+        }
 
 }
